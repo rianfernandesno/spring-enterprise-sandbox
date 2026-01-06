@@ -1,4 +1,4 @@
-package br.com.yui.unitetests.mocks;
+package br.com.yui.unitetests.mapper.mocks;
 
 
 import br.com.yui.data.dto.PersonDTO;
