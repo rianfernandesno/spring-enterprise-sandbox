@@ -1,3 +1,5 @@
+cors:
+  originPatterns: http://localhost:8080,http://localhost:3000,https://github.com/rianfernandesno
 spring:
   application:
     name: rest-spring-application
