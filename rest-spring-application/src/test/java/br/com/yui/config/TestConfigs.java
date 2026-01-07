@@ -5,7 +5,7 @@ public interface TestConfigs {
 
     String HEADER_PARAM_AUTHORIZATION = "Authorization";
     String HEADER_PARAM_ORIGIN = "Origin";
-    String ORIGIN_BLA = "https://www.erudio.com.br";
+    String ORIGIN_BLA = "https://www.bla.com.br";
     String ORIGIN_GITHUB = "https://github.com/rianfernandesno";
     String ORIGIN_LOCAL = "http://localhost:8080";
 }
