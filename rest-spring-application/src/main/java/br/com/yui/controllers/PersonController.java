@@ -15,6 +15,7 @@ import org.springframework.hateoas.PagedModel;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -32,15 +33,15 @@ public class PersonController implements PersonControllerDocs {
             MediaType.APPLICATION_XML_VALUE,
             MediaType.APPLICATION_YAML_VALUE})
     @Override
-    public  ResponseEntity<PagedModel<EntityModel<PersonDTO>>>  findAll(
+    public ResponseEntity<PagedModel<EntityModel<PersonDTO>>> findAll(
             @RequestParam(value = "page", defaultValue = "0") Integer page,
             @RequestParam(value = "size", defaultValue = "12") Integer size,
             @RequestParam(value = "direction", defaultValue = "asc") String direction
-    ){
+    ) {
         var sortDirection = "desc".equalsIgnoreCase(direction) ? Direction.DESC : Direction.ASC;
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortDirection, "firstName"));
         return ResponseEntity.ok(service.findAll(pageable));
-    };
+    }
 
     @GetMapping(value = "/findPeopleByName/{firstName}", produces = {
             MediaType.APPLICATION_JSON_VALUE,
@@ -58,8 +59,7 @@ public class PersonController implements PersonControllerDocs {
         return ResponseEntity.ok(service.findByName(firstName, pageable));
     }
 
-
-    //@CrossOrigin(origins = "http://localhost:8080")
+    // @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(value = "/{id}",
             produces = {
                     MediaType.APPLICATION_JSON_VALUE,
@@ -71,7 +71,7 @@ public class PersonController implements PersonControllerDocs {
         return service.findById(id);
     }
 
-    //@CrossOrigin(origins = {  "http://localhost:8080" , "https://github.com/rianfernandesno"})
+    // @CrossOrigin(origins = {"http://localhost:8080"})
     @PostMapping(
             consumes = {
                     MediaType.APPLICATION_JSON_VALUE,
@@ -85,6 +85,17 @@ public class PersonController implements PersonControllerDocs {
     @Override
     public PersonDTO create(@RequestBody PersonDTO person) {
         return service.create(person);
+    }
+
+    @PostMapping(value = "/massCreation",
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_YAML_VALUE}
+    )
+    @Override
+    public List<PersonDTO> massCreation(@RequestParam("file") MultipartFile file) {
+        return service.massCreation(file);
     }
 
     @PutMapping(
