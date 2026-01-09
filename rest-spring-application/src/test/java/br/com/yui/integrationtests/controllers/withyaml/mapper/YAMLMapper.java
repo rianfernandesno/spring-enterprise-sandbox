@@ -8,6 +8,7 @@ import io.restassured.mapper.ObjectMapper;
 import io.restassured.mapper.ObjectMapperDeserializationContext;
 import io.restassured.mapper.ObjectMapperSerializationContext;
 
+
 public class YAMLMapper implements ObjectMapper {
 
     private com.fasterxml.jackson.databind.ObjectMapper mapper;

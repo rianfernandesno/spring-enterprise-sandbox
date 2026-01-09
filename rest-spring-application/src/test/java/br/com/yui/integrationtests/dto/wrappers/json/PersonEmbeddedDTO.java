@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.List;
 
+
 public class PersonEmbeddedDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
