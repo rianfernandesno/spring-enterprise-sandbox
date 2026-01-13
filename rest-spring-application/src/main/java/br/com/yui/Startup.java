@@ -15,7 +15,7 @@ public class Startup {
 	public static void main(String[] args) {
 		SpringApplication.run(Startup.class, args);
 
-		genaretedHashPassword();
+		// genaretedHashPassword();
 	}
 
 	private static void genaretedHashPassword() {
