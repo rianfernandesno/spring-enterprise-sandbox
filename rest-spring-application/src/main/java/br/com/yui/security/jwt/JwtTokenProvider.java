@@ -90,14 +90,14 @@ public class JwtTokenProvider {
         return decodedJWT;
     }
 
-    public String resolveToken(HttpServletRequest request){
-        String bearToken = request.getHeader("Authorization");
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
 
-        if (StringUtils.isEmpty(bearToken) && bearToken.startsWith("Bearer ")){
-            return bearToken.substring("Bearer ".length());
-        }else{
-            throw new InvalidJwtAuthenticationException("Invalid JWT Token");
+        // Verifique se não é nulo E se começa com Bearer
+        if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
         }
+        return null;
     }
 
     public boolean validateToken(String token){
